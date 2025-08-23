@@ -17,14 +17,7 @@ int main()
 
     double x1 = 0, x2 = 0;
 
-    if (sravnenie(a) < 0)
-    {
-        linear(a, b, c, &x1, &x2);
-    }
-    else
-    {
-        quadratick(a, b, c, &x1, &x2);
-    }
+    quadratick(a, b,  c, &x1, &x2);
     return 0;
 }
 
@@ -60,7 +53,7 @@ void linear(double a, double b, double c, double* x1, double* x2)
         printf("ti daun?");
         *x1 = *x2 = (-c / b); // FIXME
         printf(" eto ne qvadratnoye uravnenie , a lineynoye i imeet odno resheniye\n");
-        printf("x = %lf", x1);
+        printf("x = %lf", *x1);
     }
 }
 
@@ -68,20 +61,27 @@ void linear(double a, double b, double c, double* x1, double* x2)
 
 void quadratick (double a, double b, double c, double* x1, double* x2)
 {
+    if (sravnenie(a) < 0)
+    {
+        linear(a, b, c, x1, x2);
+        return;
+    }
+    
     double D = b * b - 4 * a * c;
-        if (sravnenie(D) < 0)
-        {
-            *x1 = *x2 = -b / (2 * a);
-            printf("x1 = x2 = %lf", x1);
-        }
-        else if (D < 0)
-        {
-            printf("no solution");
-        }
-        else
-        {
-            *x1 = (-b + sqrt(D)) / (2 * a);
-            *x2 = (-b - sqrt(D)) / (2 * a);
-            printf("x1 = %lf, x2 = %lf", x1, x2);
-        }
+    if (sravnenie(D) < 0)
+    {
+        *x1 = *x2 = -b / (2 * a);
+        printf("x1 = x2 = %lf", *x1);
+    }
+    else if (D < 0)
+    {
+        printf("no solution");
+    }
+    else
+    {
+        *x1 = (-b + sqrt(D)) / (2 * a);
+        *x2 = (-b - sqrt(D)) / (2 * a);
+        printf("x1 = %lf, x2 = %lf", *x1, *x2);
+    }
+    
 }
