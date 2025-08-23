@@ -3,51 +3,49 @@
 
 const double EPS = 1e-9;
 
-int sravnenie(double a);
-void linear(double a, double b, double c, double* x1, double* x2, int* nRoots);
-void quadratick (double a, double b, double c, double* x1, double* x2, int* nRoots);
+int sravnenie (double a);
+int linear (double a, double b, double c, double* x1, double* x2);
+int quadratick (double a, double b, double c, double* x1, double* x2);
 
-int main()
+int main ()
 {
-    printf("ax**2 + bx + c = 0\n");
-    printf("vvedite a, b, c\n");
+    printf ("ax**2 + bx + c = 0\n");
+    printf ("vvedite a, b, c\n");
 
     int nRoots = 0;
 
     double a = 0, b = 0, c = 0;
-    scanf("%lf, %lf, %lf", &a, &b, &c);
+    scanf ("%lf, %lf, %lf", &a, &b, &c);
 
     double x1 = 0, x2 = 0;
 
-    quadratick(a, b,  c, &x1, &x2, &nRoots);
+    nRoots = quadratick (a, b,  c, &x1, &x2);
     
     switch (nRoots)
     {
         case -1:
-            printf("INFINITY ROOTS");
+            printf ("INFINITY ROOTS");
             break;
         case 0:
-            printf("NO ROOTS");
+            printf ("NO ROOTS");
             break;
         case 1:
-            printf("ONE ROOT IS %lg", x1);
+            printf ("ONE ROOT IS %lg", x1);
             break;
         case 2:
-            printf("TWO ROOTS: X1 = %lg AND X2 = %lg", x1, x2);
+            printf ("TWO ROOTS: X1 = %lg AND X2 = %lg", x1, x2);
             break;
         default:
-            printf("ITS IMPOSSIBLE");
+            printf ("ITS IMPOSSIBLE");
             break;
     }
 
     return 0;
 }
 
-
-
-int sravnenie(double a)
+int sravnenie (double a)
 {
-    if (abs(a) < EPS)
+    if (abs (a) < EPS)
     {
         return -1;
     }
@@ -55,53 +53,56 @@ int sravnenie(double a)
     return 1;
 }
 
-
-
-void linear(double a, double b, double c, double* x1, double* x2, int* nRoots)
+int linear (double a, double b, double c, double* x1, double* x2)
 {
-    if (sravnenie(b) < 0)
+    if (sravnenie (b) < 0)
     {
-        if (sravnenie(c) < 0)
+        if (sravnenie (c) < 0)
         {
-            *nRoots = -1;
+            return -1;
         }
         else
         {
-            *nRoots = 0;
+            return 0;
         }
     }
     else
     {
-        *nRoots = 1;
         *x1 = *x2 = (-c / b);
+        return 1;
     }
 }
 
-
-
-void quadratick (double a, double b, double c, double* x1, double* x2, int* nRoots)
+int quadratick (double a, double b, double c, double* x1, double* x2)
 {
-    if (sravnenie(a) < 0)
+    if (sravnenie (a) < 0)
     {
-        linear(a, b, c, x1, x2, nRoots);
-        return;
+        return linear (a, b, c, x1, x2);
     }
-    
+    if (sravnenie (c) < 0)
+    {
+        *x1 = 0;
+        *x2 = -b/a;
+        return 2;
+    }
+
     double D = b * b - 4 * a * c;
-    if (sravnenie(D) < 0)
+
+    if (sravnenie (D) < 0)
     {
         *x1 = *x2 = -b / (2 * a);
-        *nRoots = 1;
+        return 1;
     }
     else if (D < 0)
     {
-        *nRoots = 0;
+        return 0;
     }
     else
     {
-        *x1 = (-b + sqrt(D)) / (2 * a);
-        *x2 = (-b - sqrt(D)) / (2 * a);
-        *nRoots = 2;
+        double sqrt_D = sqrt (D);
+        *x1 = (-b + sqrt_D) / (2 * a);
+        *x2 = (-b - sqrt_D) / (2 * a);
+        return 2;
     }
     
 }
