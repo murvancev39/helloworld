@@ -24,7 +24,8 @@ int Test(double a, double b, double c, double x1Ref, double x2Ref, int nRootsRef
 
     if ( !( ( (x1 == x1Ref && x2 == x2Ref) || (x1 == x2Ref && x2 == x1Ref) ) && nRoots==nRootsRef) )
     {
-        printf("ERROOOR \nX1, X2: %LF, %LF SHOULD BE X1, X2: %LF, %LF\n", x1, x2, x1Ref, x2Ref);
+        printf("ERROOOR \nX1, X2: %LF, %LF "
+               "SHOULD BE X1, X2: %LF, %LF\n", x1, x2, x1Ref, x2Ref);
         printf("nRoots = %d , SHOLD BE nRoots = %d\n", nRoots, nRootsRef);
         return 0;
     }

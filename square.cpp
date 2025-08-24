@@ -6,8 +6,8 @@ const double EPS = 1e-9;
 
 int main ()
 {
-    printf("IF YOU WANT TO DO TESTS , PRINT: 1\n");
-    printf("IF YOU WANT SOLVE THE EQUATION , PRINT: 0\n");
+    printf("IF YOU WANT TO DO TESTS , PRINT: 1\n"
+           "IF YOU WANT SOLVE THE EQUATION , PRINT: 0\n");
 
     int Fortnite = 1;
     scanf("%d", &Fortnite);
@@ -18,43 +18,36 @@ int main ()
     }
     else
     {
-        printf ("ax**2 + bx + c = 0\n");
-        printf ("VVEDITE a, b, c\n");
-
-        int nRoots = 0;
+        printf ("ax**2 + bx + c = 0\n"
+                "VVEDITE a, b, c\n");
 
         double a = 0, b = 0, c = 0;
         scanf ("%lf, %lf, %lf", &a, &b, &c);
-
+                
         double x1 = 0, x2 = 0;
-
-        nRoots = quadratick (a, b,  c, &x1, &x2);
+                
+        int nRoots = quadratick (a, b,  c, &x1, &x2);
         
         vivod_otveta (nRoots, x1, x2);
     }
     return 0;
 }
 
-int zero_notzero (double a)
+int is_notzero (double a) 
 {
-    if (abs (a) < EPS)
-    {
-        return 0;
-    }
-
-    return 1;
+    return (abs (a) > EPS);
 }
 
 int linear (double a, double b, double c, double* x1, double* x2)
 {
-    if (zero_notzero (b))
+    if (is_notzero (b))
     {
         *x1 = *x2 = (-c / b);
         return 1;
     }
     else
     {
-        if (!zero_notzero (c))
+        if (!is_notzero (c))
         {
             return -1;
         }
@@ -67,11 +60,11 @@ int linear (double a, double b, double c, double* x1, double* x2)
 
 int quadratick (double a, double b, double c, double* x1, double* x2)
 {
-    if (!zero_notzero (a))
+    if (!is_notzero (a))
     {
         return linear (a, b, c, x1, x2);
     }
-    if (!zero_notzero (c))
+    if (!is_notzero (c))
     {
         *x1 = 0;
         *x2 = -b/a;
@@ -80,7 +73,7 @@ int quadratick (double a, double b, double c, double* x1, double* x2)
 
     double D = b * b - 4 * a * c;
 
-    if (!zero_notzero (D))
+    if (!is_notzero (D))
     {
         *x1 = *x2 = -b / (2 * a);
         return 1;
