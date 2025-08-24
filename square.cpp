@@ -38,27 +38,27 @@ int is_notzero (double a)
     return (abs (a) > EPS);
 }
 
-int linear (double a, double b, double c, double* x1, double* x2)
+enum NROOTS linear (double a, double b, double c, double* x1, double* x2)
 {
     if (is_notzero (b))
     {
         *x1 = *x2 = (-c / b);
-        return 1;
+        return One;
     }
     else
     {
         if (!is_notzero (c))
         {
-            return -1;
+            return Infinity;
         }
         else
         {
-            return 0;
+            return Zero;
         }
     }
 }
 
-int quadratick (double a, double b, double c, double* x1, double* x2)
+enum NROOTS quadratick (double a, double b, double c, double* x1, double* x2)
 {
     if (!is_notzero (a))
     {
@@ -68,7 +68,7 @@ int quadratick (double a, double b, double c, double* x1, double* x2)
     {
         *x1 = 0;
         *x2 = -b/a;
-        return 2;
+        return Two;
     }
 
     double D = b * b - 4 * a * c;
@@ -76,18 +76,18 @@ int quadratick (double a, double b, double c, double* x1, double* x2)
     if (!is_notzero (D))
     {
         *x1 = *x2 = -b / (2 * a);
-        return 1;
+        return One;
     }
     else if (D < 0)
     {
-        return 0;
+        return Zero;
     }
     else
     {
         double sqrt_D = sqrt (D);
         *x1 = (-b + sqrt_D) / (2 * a);
         *x2 = (-b - sqrt_D) / (2 * a);
-        return 2;
+        return Two;
     }
 }
 

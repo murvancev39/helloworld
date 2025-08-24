@@ -6,6 +6,11 @@ void UniTests(void)
     int n = 0;
 
     failed += Test(1, 2, 1, -1.0, -1.0, 1); n +=1;
+    failed += Test(1e-6, 2e-6, 1e-6, -1.0, -1.0, 1); n +=1;
+    failed += Test(1, 2, 1, -1.0, -1.0, 1); n +=1;
+    failed += Test(1, 2, 1, -1.0, -1.0, 1); n +=1;
+    failed += Test(1, 2, 1, -1.0, -1.0, 1); n +=1;
+    failed += Test(1, 2, 1, -1.0, -1.0, 1); n +=1;
 
     if (failed == n)
     {
