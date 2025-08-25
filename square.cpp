@@ -26,7 +26,7 @@ int main ()
                 
         double x1 = 0, x2 = 0;
                 
-        int nRoots = quadratick (a, b,  c, &x1, &x2);
+        enum NROOTS nRoots = quadratick (a, b,  c, &x1, &x2);
         
         vivod_otveta (nRoots, x1, x2);
     }
@@ -91,20 +91,20 @@ enum NROOTS quadratick (double a, double b, double c, double* x1, double* x2)
     }
 }
 
-void vivod_otveta (int nRoots, double x1, double x2)
+void vivod_otveta (enum NROOTS nRoots, double x1, double x2)
 {
     switch (nRoots)
     {
-        case -1:
+        case Infinity:
             printf ("INFINITY ROOTS");
             break;
-        case 0:
+        case Zero:
             printf ("NO ROOTS");
             break;
-        case 1:
+        case One:
             printf ("ONE ROOT IS %lg", x1);
             break;
-        case 2:
+        case Two:
             printf ("TWO ROOTS: X1 = %lg AND X2 = %lg", x1, x2);
             break;
         default:

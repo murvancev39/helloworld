@@ -9,9 +9,9 @@ enum NROOTS
 };
 
 void UniTests(void);
-int Test(double a, double b, double c, double x1Ref, double x2Ref, int nRootsRef);
+int Test(double a, double b, double c, double x1Ref, double x2Ref, enum NROOTS nRootsRef);
 int is_notzero (double a);
-void vivod_otveta (int nRoots, double x1, double x2);
+void vivod_otveta (enum NROOTS nRoots, double x1, double x2);
 enum NROOTS linear (double a, double b, double c, double* x1, double* x2);
 enum NROOTS quadratick (double a, double b, double c, double* x1, double* x2);
 #endif
