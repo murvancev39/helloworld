@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include "header.h"
+#include <math.h>
 
 void UniTests()
 {
     int not_failed = 0;
     int n = 0;
 
-    not_failed += Test(0, 0, 0, 0, 0, Infinity); n +=1;
-    not_failed += Test(1, 2, 1, -1.0, -1.0, One); n +=1;
+    not_failed += Test(0, 0, 0, NAN, NAN, Infinity);           n +=1;
+    not_failed += Test(1, 2, 1, -1.0, -1.0, One);          n +=1;
     not_failed += Test(1e-6, 2e-6, 1e-6, -1.0, -1.0, One); n +=1;
-    not_failed += Test(1, -5, -14, -2, 7, Two); n +=1;
-    not_failed += Test(1e10, -5e10, -1.4e11, -2, 7, Two); n +=1;
-    not_failed += Test(1, 2, 5, 0, 0, Zero); n +=1;
-    not_failed += Test(100, -5397, 5141, 53, 0.97, Two); n +=1;
+    not_failed += Test(1, -5, -14, -2, 7, Two);            n +=1;
+    not_failed += Test(1e10, -5e10, -1.4e11, -2, 7, Two);  n +=1;
+    not_failed += Test(1, 2, 5, NAN, NAN, Zero);               n +=1;
+    not_failed += Test(100, -5397, 5141, 53, 0.97, Two);   n +=1;
 
     if (not_failed == n)
     {

@@ -14,4 +14,6 @@ int is_notzero (double a);
 void vivod_otveta (enum NROOTS nRoots, double x1, double x2);
 enum NROOTS linear (double b, double c, double* x1, double* x2);
 enum NROOTS quadratick (double a, double b, double c, double* x1, double* x2);
+void clear ();
+int NAN_TEST (double x);
 #endif

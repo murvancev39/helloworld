@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <assert.h>
 #include "header.h"
 
 const double EPS = 1e-9;
@@ -8,12 +9,14 @@ int main()
 {
     
     printf ("MEOOOOW\n"
-           "IF YOU WANT TO DO TESTS , PRINT: 1\n"
+           "IF YOU WANT TO DO TESTS , PRINT ANY NUMBER WITHOUT 0\n"
            "IF YOU WANT SOLVE THE EQUATION , PRINT: 0\n");
 
     int Fortnite = 1;
     scanf ("%d", &Fortnite);
-
+    
+    clear ();
+    
     if (Fortnite)
     {
         UniTests ();
@@ -25,14 +28,23 @@ int main()
     printf ("ax**2 + bx + c = 0\n"
            "VVEDITE A\n");
     scanf ("%lf", &a);
+    assert (!isnan(a) && "PLS INPUT A NUMBER\n");
+    clear ();
+    printf("A is %lg\n", a);
     
     printf ("VVEDITE B\n");
     scanf ("%lf", &b);
-    
+    assert (!isnan(b) && "PLS INPUT A NUMBER\n");
+    clear ();
+    printf("B is %lg\n", b);
+
     printf ("VVEDITE C\n");
     scanf ("%lf", &c);
+    assert (!isnan(c) && "PLS INPUT A NUMBER\n");
+    clear();
+    printf("c is %lg\n", b);
 
-    printf ("a = %lf, b = %lf, c = %lf\n", a, b, c);
+    printf ("\na = %lf, b = %lf, c = %lf\n\n", a, b, c);
 
     double x1 = NAN, x2 = NAN;
 
@@ -68,7 +80,6 @@ enum NROOTS quadratick (double a, double b, double c, double *x1, double *x2)
 {
     if (!is_notzero (a))
     {
-        *x1 = *x2 = 0;
         return linear(b, c, x1, x2);
     }
 
@@ -88,7 +99,6 @@ enum NROOTS quadratick (double a, double b, double c, double *x1, double *x2)
     }
     else if (D < 0)
     {
-        *x1 = *x2 = 0;
         return Zero;
     }
     else
@@ -102,12 +112,6 @@ enum NROOTS quadratick (double a, double b, double c, double *x1, double *x2)
 
 void vivod_otveta (enum NROOTS nRoots, double x1, double x2)
 {
-    if ( isnan(x1) || isnan(x2) )
-    {
-        printf ("PLS RESTART THE PROGRAM AND ENTER A NUMBER");
-        printf("x1 = %lg , x2 = %lg", x1, x2);
-        return;
-    }
     switch (nRoots)
     {
     case Infinity:
@@ -126,5 +130,10 @@ void vivod_otveta (enum NROOTS nRoots, double x1, double x2)
         printf ("ITS IMPOSSIBLE");
         break;
     }
-    printf ("\nCOMMIT GITHUB");
+    printf ("\n\nCOMMIT GITHUB");
+}
+
+void clear ()
+{
+    while ( getchar() != '\n');
 }
