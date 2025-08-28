@@ -28,21 +28,33 @@ int main()
     printf ("ax**2 + bx + c = 0\n"
            "VVEDITE A\n");
     scanf ("%lf", &a);
-    assert (!isnan(a) && "PLS INPUT A NUMBER\n");
+    if (isnan(a))
+    {
+        printf("PLS INPUT A NUMBER\n");
+        return 0;
+    }
     clear ();
     printf("A is %lg\n", a);
     
     printf ("VVEDITE B\n");
     scanf ("%lf", &b);
-    assert (!isnan(b) && "PLS INPUT A NUMBER\n");
+    if (isnan(b))
+    {
+        printf("PLS INPUT A NUMBER\n");
+        return 0;
+    }
     clear ();
     printf("B is %lg\n", b);
 
     printf ("VVEDITE C\n");
     scanf ("%lf", &c);
-    assert (!isnan(c) && "PLS INPUT A NUMBER\n");
+    if (isnan(c))
+    {
+        printf("PLS INPUT A NUMBER\n");
+        return 0;
+    }
     clear();
-    printf("c is %lg\n", b);
+    printf("C is %lg\n", c);
 
     printf ("\na = %lf, b = %lf, c = %lf\n\n", a, b, c);
 
